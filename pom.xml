@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.snjdigitalsolutions</groupId>
-        <artifactId>email-blacklist</artifactId>
+        <artifactId>email-blacklist-frontend</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>springboot-utility-fx</artifactId>
@@ -76,6 +76,23 @@
         </dependency>
     </dependencies>
 
+    <repositories>
+        <repository>
+            <id>gitea</id>
+            <url>https://git.snjdigitalsolutions.com/api/packages/SNJ-Digital-Solutions/maven</url>
+        </repository>
+    </repositories>
+    <distributionManagement>
+        <repository>
+            <id>gitea</id>
+            <url>https://git.snjdigitalsolutions.com/api/packages/SNJ-Digital-Solutions/maven</url>
+        </repository>
+        <snapshotRepository>
+            <id>gitea</id>
+            <url>https://git.snjdigitalsolutions.com/api/packages/SNJ-Digital-Solutions/maven</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     <build>
         <plugins>
             <plugin>
@@ -90,18 +107,18 @@
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
-                </configuration>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--                <configuration>-->
+<!--                    <excludes>-->
+<!--                        <exclude>-->
+<!--                            <groupId>org.projectlombok</groupId>-->
+<!--                            <artifactId>lombok</artifactId>-->
+<!--                        </exclude>-->
+<!--                    </excludes>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 
