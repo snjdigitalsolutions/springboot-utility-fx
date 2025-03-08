@@ -14,7 +14,7 @@ public class StageLogoUtility {
 
     private static Resource stageLogo = null;
 
-    public StageLogoUtility(@Value("classpath:/booklogo.png") Resource logo) {
+    public StageLogoUtility(@Value("classpath:/filterlogo.png") Resource logo) {
         stageLogo = logo;
     }
 
