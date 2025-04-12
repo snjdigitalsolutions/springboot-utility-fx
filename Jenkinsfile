@@ -5,11 +5,19 @@ pipeline {
     agent { label 'Node 1' }
 
     environment {
-        REPOSITORY = 'springboot-utility-fx'
-        NOTIFICATION_EMAIL = 'jparham@snjdigitalsolutions.com'
+
     }
 
     stages {
+        stage('Initialize') {
+          steps {
+            script {
+                def REPOSITORY = 'springboot-utility-fx'
+                def NOTIFICATION_EMAIL = 'jparham@snjdigitalsolutions.com'
+            }
+          }
+        }
+
         stage('Git'){
             steps {
                 script {
