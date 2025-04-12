@@ -4,10 +4,6 @@ library 'jenkins-notifier'
 pipeline {
     agent { label 'Node 1' }
 
-    environment {
-
-    }
-
     stages {
         stage('Initialize') {
           steps {
