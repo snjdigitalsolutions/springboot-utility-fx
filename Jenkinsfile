@@ -18,7 +18,7 @@ pipeline {
             steps {
                 script {
                     notifier.build_start()
-                    gitUtility.cloneBuildBranch('SNJ-Digital-Solutions/${env.REPOSITORY}')
+                    gitUtility.cloneBuildBranch('SNJ-Digital-Solutions/${REPOSITORY}')
                 }
             }
         }
@@ -32,13 +32,13 @@ pipeline {
     post {
         success {
             script {
-                notifier.success('${env.NOTIFICATION_EMAIL}')
+                notifier.success('${NOTIFICATION_EMAIL}')
             }
 
         }
         failure {
             script {
-                notifier.fail('${env.NOTIFICATION_EMAIL}')
+                notifier.fail('${NOTIFICATION_EMAIL}')
             }
 
         }
