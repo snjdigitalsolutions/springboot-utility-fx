@@ -5,10 +5,10 @@
     <parent>
         <groupId>com.snjdigitalsolutions</groupId>
         <artifactId>email-blacklist</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.1.0-SNAPSHOT</version>
     </parent>
     <artifactId>springboot-utility-fx</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <name>springboot-utility-fx</name>
     <description>springboot-utility-fx</description>
     <url/>
@@ -76,20 +76,16 @@
         </dependency>
     </dependencies>
 
-    <repositories>
-        <repository>
-            <id>gitea</id>
-            <url>https://git.snjdigitalsolutions.com/api/packages/SNJ-Digital-Solutions/maven</url>
-        </repository>
-    </repositories>
     <distributionManagement>
         <repository>
-            <id>gitea</id>
-            <url>https://git.snjdigitalsolutions.com/api/packages/SNJ-Digital-Solutions/maven</url>
+            <id>snjds-nexus</id>
+            <name>Internal Releases</name>
+            <url>https://nexus.snjdigitalsolutions.com/repository/maven-snjds-releases/</url>
         </repository>
         <snapshotRepository>
-            <id>gitea</id>
-            <url>https://git.snjdigitalsolutions.com/api/packages/SNJ-Digital-Solutions/maven</url>
+            <id>snjds-nexus</id>
+            <name>Internal Snapshots</name>
+            <url>https://nexus.snjdigitalsolutions.com/repository/maven-snjds-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
 
