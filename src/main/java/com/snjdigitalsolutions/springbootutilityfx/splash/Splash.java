@@ -53,6 +53,7 @@ public class Splash extends Preloader {
             fade.setToValue(0.0);
             fade.setOnFinished(e -> {
                 splashStage.hide();
+                // Preconfigurations here
                 splashController.showApplicationStage();
             });
             fade.play();
