@@ -2,6 +2,8 @@ package com.snjdigitalsolutions.springbootutilityfx.splash;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.event.*;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
@@ -9,6 +11,7 @@ import org.springframework.context.event.ContextRefreshedEvent;
 
 public class SplashConfiguration {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(SplashConfiguration.class);
     private static SplashConfiguration instance;
 
     private String applicationName;
@@ -54,32 +57,32 @@ public class SplashConfiguration {
             if (event instanceof ApplicationStartingEvent) {
                 application.notifyPreloader(new Splash.CustomProgressNotification(
                         0.1, "Spring starting..."));
-                System.out.println("Spring starting");
+                LOGGER.info("Spring starting");
 
             } else if (event instanceof ApplicationEnvironmentPreparedEvent) {
                 application.notifyPreloader(new Splash.CustomProgressNotification(
                         0.3, "Environment prepared..."));
-                System.out.println("Environment prepared");
+                LOGGER.info("Environment prepared");
 
             } else if (event instanceof ApplicationContextInitializedEvent) {
                 application.notifyPreloader(new Splash.CustomProgressNotification(
                         0.5, "Context initialized..."));
-                System.out.println("Context initialized...");
+                LOGGER.info("Context initialized...");
 
             } else if (event instanceof ApplicationPreparedEvent) {
                application.notifyPreloader(new Splash.CustomProgressNotification(
                         0.7, "Context prepared..."));
-                System.out.println("Context Prepared");
+                LOGGER.info("Context Prepared");
 
             } else if (event instanceof ContextRefreshedEvent) {
                application.notifyPreloader(new Splash.CustomProgressNotification(
                         0.9, "Context refreshed..."));
-                System.out.println("Context Refreshed");
+                LOGGER.info("Context Refreshed");
 
             } else if (event instanceof ApplicationReadyEvent) {
                application.notifyPreloader(new Splash.CustomProgressNotification(
                         1.0, "Ready!"));
-                System.out.println("Ready!");
+                LOGGER.info("Ready!");
             }
         };
     }
