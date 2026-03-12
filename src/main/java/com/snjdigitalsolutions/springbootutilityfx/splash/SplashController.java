@@ -18,7 +18,7 @@ public class SplashController {
 
     @FXML
     public void initialize() {
-
+        applicationLabel.setText(SplashConfiguration.getInstance().getApplicationName());
     }
 
     public void updateProgress(double progress, String message) {
