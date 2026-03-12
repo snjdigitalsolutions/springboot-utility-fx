@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SpringbootUtilityFxApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringbootUtilityFxApplication.class, args);
+//        SpringApplication.run(SpringbootUtilityFxApplication.class, args);
     }
 
 }
