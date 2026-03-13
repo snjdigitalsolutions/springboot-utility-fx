@@ -9,6 +9,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
@@ -24,6 +26,8 @@ import java.io.IOException;
  */
 public abstract class AbstractStageReadyListener implements ApplicationListener<StageReadyEvent>, SpringInitializableNode {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(AbstractStageReadyListener.class);
+
     protected final Resource fxml;
     @Autowired
     protected ApplicationContext applicationContext;
@@ -38,6 +42,10 @@ public abstract class AbstractStageReadyListener implements ApplicationListener<
     public void onApplicationEvent(StageReadyEvent event) {
         try {
             Stage applicationStage = event.getStage();
+            applicationStage.setOnShown(shown -> {
+                LOGGER.debug("Application showing...");
+                performIntialization();
+            });
             applicationStage.setWidth(ApplicationPreConfiguration.getInstance().getStageWidth());
             applicationStage.setHeight(ApplicationPreConfiguration.getInstance().getStageHeight());
             SplashController.setStage(applicationStage);
@@ -46,8 +54,10 @@ public abstract class AbstractStageReadyListener implements ApplicationListener<
             Parent applicationRoot = fxmlLoader.load();
             Scene applicationScene = new Scene(applicationRoot);
             applicationStage.setScene(applicationScene);
+            if (!ApplicationPreConfiguration.getInstance().getCssPath().isEmpty()) {
+                applicationScene.getStylesheets().add(getClass().getResource("/styles/application.css").toExternalForm());
+            }
             minimizeUtility.addMinimizeToScene(applicationScene, applicationStage);
-            performIntialization();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

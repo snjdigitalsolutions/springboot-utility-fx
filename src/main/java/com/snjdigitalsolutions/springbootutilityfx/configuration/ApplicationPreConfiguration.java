@@ -7,6 +7,7 @@ public class ApplicationPreConfiguration {
 
     private double stageWidth = 800;
     private double stageHeight = 600;
+    private String cssPath = "";
 
     private ApplicationPreConfiguration(){}
 
@@ -31,5 +32,13 @@ public class ApplicationPreConfiguration {
 
     public void setStageHeight(double stageHeight) {
         this.stageHeight = stageHeight;
+    }
+
+    public String getCssPath() {
+        return cssPath;
+    }
+
+    public void setCssPath(String cssPath) {
+        this.cssPath = cssPath;
     }
 }
