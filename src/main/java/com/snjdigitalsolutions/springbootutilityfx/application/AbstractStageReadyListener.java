@@ -24,7 +24,7 @@ import java.io.IOException;
  * method performs common setup of the JavaFX application by creating the base
  * stage.
  */
-public abstract class AbstractStageReadyListener implements ApplicationListener<StageReadyEvent>, SpringInitializableNode {
+public abstract class AbstractStageReadyListener implements ApplicationListener<StageReadyEvent> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AbstractStageReadyListener.class);
 
@@ -43,6 +43,7 @@ public abstract class AbstractStageReadyListener implements ApplicationListener<
         try {
             Stage applicationStage = event.getStage();
             applicationStage.setOnShown(shown -> {
+                //TODO Refactor adding feature to allow for Runnable to be injected
                 LOGGER.debug("Application showing...");
             });
             applicationStage.setWidth(ApplicationPreConfiguration.getInstance().getStageWidth());
@@ -61,8 +62,6 @@ public abstract class AbstractStageReadyListener implements ApplicationListener<
             throw new RuntimeException(e);
         }
     }
-
-    public abstract void performIntialization();
 
 
 }
