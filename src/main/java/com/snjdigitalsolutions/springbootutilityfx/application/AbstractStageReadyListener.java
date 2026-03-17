@@ -49,6 +49,7 @@ public abstract class AbstractStageReadyListener implements ApplicationListener<
             applicationStage.setWidth(ApplicationPreConfiguration.getInstance().getStageWidth());
             applicationStage.setHeight(ApplicationPreConfiguration.getInstance().getStageHeight());
             SplashController.setStage(applicationStage, applicationContext);
+            setPostShowRunnable();
             FXMLLoader fxmlLoader = new FXMLLoader(fxml.getURL());
             fxmlLoader.setControllerFactory(applicationContext::getBean);
             Parent applicationRoot = fxmlLoader.load();
@@ -62,6 +63,8 @@ public abstract class AbstractStageReadyListener implements ApplicationListener<
             throw new RuntimeException(e);
         }
     }
+
+    public abstract void setPostShowRunnable();
 
 
 }

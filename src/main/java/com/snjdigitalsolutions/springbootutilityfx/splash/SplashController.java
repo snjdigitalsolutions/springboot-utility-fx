@@ -20,6 +20,7 @@ public class SplashController {
 
     private static Stage applicationStage;
     private static ApplicationContext applicationContext;
+    private static PostShowRunnable postShowRunnable;
 
     @FXML
     public void initialize() {
@@ -34,6 +35,14 @@ public class SplashController {
     public static void setStage(Stage stage, ApplicationContext context) {
         applicationStage = stage;
         applicationContext = context;
+    }
+
+    public static void setPostShowRunnable(PostShowRunnable runnable){
+        postShowRunnable = runnable;
+    }
+
+    public void performPostShowAction() {
+        postShowRunnable.performPostSHowAction();;
     }
 
     public void showApplicationStage(){
