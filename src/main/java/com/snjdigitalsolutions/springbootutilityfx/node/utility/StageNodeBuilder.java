@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -16,6 +17,7 @@ public class StageNodeBuilder {
     private Boolean resizable;
     private String title;
     private Node parentNode;
+    private Boolean decorated;
 
     private StageNodeBuilder() {
 
@@ -50,9 +52,17 @@ public class StageNodeBuilder {
         return this;
     }
 
+    public StageNodeBuilder setDecorated(boolean decorated) {
+        this.decorated = decorated;
+        return this;
+    }
+
     public Stage build() {
         Stage stage = new Stage();
         stage.setScene(nodeScene);
+        if (decorated != null && !decorated) {
+            stage.initStyle(StageStyle.UNDECORATED);
+        }
         if (resizable != null) {
             stage.setResizable(resizable);
         }
@@ -73,7 +83,7 @@ public class StageNodeBuilder {
     public void buildAndShow() {
         build().show();
         if (parentNode instanceof PostShowActionNode) {
-            ((PostShowActionNode)parentNode).onAfterShow();
+            ((PostShowActionNode) parentNode).onAfterShow();
         }
     }
 
