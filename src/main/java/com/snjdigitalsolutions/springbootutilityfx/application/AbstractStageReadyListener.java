@@ -47,7 +47,9 @@ public abstract class AbstractStageReadyListener implements ApplicationListener<
                 LOGGER.debug("Application showing...");
             });
             applicationStage.setWidth(ApplicationPreConfiguration.getInstance().getStageWidth());
+            applicationStage.setMinWidth(ApplicationPreConfiguration.getInstance().getStageWidth());
             applicationStage.setHeight(ApplicationPreConfiguration.getInstance().getStageHeight());
+            applicationStage.setMinHeight(ApplicationPreConfiguration.getInstance().getStageHeight());
             SplashController.setStage(applicationStage, applicationContext);
             setPostShowRunnable();
             FXMLLoader fxmlLoader = new FXMLLoader(fxml.getURL());
