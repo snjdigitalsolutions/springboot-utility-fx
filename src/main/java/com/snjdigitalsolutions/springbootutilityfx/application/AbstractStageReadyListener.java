@@ -2,7 +2,6 @@ package com.snjdigitalsolutions.springbootutilityfx.application;
 
 import com.snjdigitalsolutions.springbootutilityfx.configuration.ApplicationPreConfiguration;
 import com.snjdigitalsolutions.springbootutilityfx.event.StageReadyEvent;
-import com.snjdigitalsolutions.springbootutilityfx.node.SpringInitializableNode;
 import com.snjdigitalsolutions.springbootutilityfx.node.utility.MinimizeUtility;
 import com.snjdigitalsolutions.springbootutilityfx.splash.SplashController;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +16,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.core.io.Resource;
 
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * The stage ready listener fires when the application is ready to start.
@@ -47,7 +47,9 @@ public abstract class AbstractStageReadyListener implements ApplicationListener<
                 LOGGER.debug("Application showing...");
             });
             applicationStage.setWidth(ApplicationPreConfiguration.getInstance().getStageWidth());
+            applicationStage.setMinWidth(ApplicationPreConfiguration.getInstance().getStageWidth());
             applicationStage.setHeight(ApplicationPreConfiguration.getInstance().getStageHeight());
+            applicationStage.setMinHeight(ApplicationPreConfiguration.getInstance().getStageHeight());
             SplashController.setStage(applicationStage, applicationContext);
             setPostShowRunnable();
             FXMLLoader fxmlLoader = new FXMLLoader(fxml.getURL());
@@ -56,7 +58,8 @@ public abstract class AbstractStageReadyListener implements ApplicationListener<
             Scene applicationScene = new Scene(applicationRoot);
             applicationStage.setScene(applicationScene);
             if (!ApplicationPreConfiguration.getInstance().getCssPath().isEmpty()) {
-                applicationScene.getStylesheets().add(getClass().getResource("/styles/application.css").toExternalForm());
+                applicationScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/styles/application.css"))
+                        .toExternalForm());
             }
             minimizeUtility.addMinimizeToScene(applicationScene, applicationStage);
         } catch (IOException e) {
