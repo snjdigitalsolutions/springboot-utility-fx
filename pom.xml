@@ -76,20 +76,17 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-    </dependencies>
 
-    <distributionManagement>
-        <repository>
-            <id>snjds-nexus</id>
-            <name>Internal Releases</name>
-            <url>https://nexus.snjdigitalsolutions.com/repository/maven-snjds-releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>snjds-nexus</id>
-            <name>Internal Snapshots</name>
-            <url>https://nexus.snjdigitalsolutions.com/repository/maven-snjds-snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
+        <!-- Pinned dependencies for CVEs -->
+        <!-- CVE-2026-24400 from spring-boot-starter-test-->
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.27.7</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
 
     <build>
         <plugins>
