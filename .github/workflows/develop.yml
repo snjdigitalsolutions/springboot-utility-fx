@@ -1,5 +1,7 @@
 name: Create library snapshot
 on:
+  push:
+    branches: [develop]
   workflow_dispatch:
 
 jobs:
