@@ -8,12 +8,15 @@ jobs:
   execute_git_leaks:
     name: Run GitLeaks
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
     steps:
+      - name: Checkout source
+        uses: actions/checkout@v6
+
       - name: Check for leaks
-        env:
-          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true # For GitLeaks
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
         uses: gitleaks/gitleaks-action@v2
 
   build_and_package:
@@ -23,9 +26,6 @@ jobs:
     steps:
       - name: Checkout source
         uses: actions/checkout@v6
-
-      - name: Execute GitLeaks
-        uses: gitleaks/gitleaks-action@v2
 
       - name: Setup and show Java version
         uses: actions/setup-java@v5
