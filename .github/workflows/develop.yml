@@ -8,12 +8,12 @@ jobs:
   execute_git_leaks:
     name: Run GitLeaks
     runs-on: ubuntu-latest
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true # For GitLeaks
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
     steps:
       - name: Check for leaks
+        env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true # For GitLeaks
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
         uses: gitleaks/gitleaks-action@v2
 
   build_and_package:
