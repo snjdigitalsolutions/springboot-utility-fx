@@ -74,7 +74,7 @@
             <id>github</id>
             <properties>
                 <altReleaseDeploymentRepository>
-                    https://maven.pkg.github.com/snjdigitalsolutions/springboot-utility-fx
+                    github::https://maven.pkg.github.com/snjdigitalsolutions/springboot-utility-fx
                 </altReleaseDeploymentRepository>
             </properties>
         </profile>
