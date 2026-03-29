@@ -1,0 +1,59 @@
+name: Publish library to GitHub
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  execute_git_leaks:
+    name: Run GitLeaks
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v6
+
+      - name: Check for leaks
+        uses: gitleaks/gitleaks-action@v2
+
+  build_and_package:
+    name: Build and Package Library
+    needs: execute_git_leaks
+    runs-on: ubuntu-latest
+    env:
+      LIBRARY_VERSION: "1.0.0"
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v6
+
+      - name: Setup and show Java version
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'liberica'
+          java-version: '25'
+          java-package: 'jdk+fx'
+      - run: |
+          java --version
+          mvn --version
+
+      - name: Set version from branch
+        run: |
+          BRANCH=${GITHUB_REF##*/}
+          if [ "$BRANCH" = "main" ]; then
+            VERSION=${env.LIBRARY_VERSION}
+          else
+            # Sanitize branch name (slashes, etc.)
+            SAFE_BRANCH=$(echo "$BRANCH" | sed 's/[^a-zA-Z0-9]/-/g')
+            VERSION="${env.LINBRARY_VERSION}-${SAFE_BRANCH}-SNAPSHOT"
+          fi
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Build and deploy library
+        run: |
+          mvn -B --update-snapshots -DskipTests -Drevision=${{ env.VERSION }} clean deploy -s ./settings.xml -P github
+        env:
+          MAVEN_USER: ${{ secrets.MAVEN_USER }}
+          MAVEN_PASSKEY: ${{ secrets.MAVEN_PASSKEY }}
