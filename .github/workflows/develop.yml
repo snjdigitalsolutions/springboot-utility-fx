@@ -47,7 +47,7 @@ jobs:
           else
             # Sanitize branch name (slashes, etc.)
             SAFE_BRANCH=$(echo "$BRANCH" | sed 's/[^a-zA-Z0-9]/-/g')
-            VERSION="${env.LINBRARY_VERSION}-${SAFE_BRANCH}-SNAPSHOT"
+            VERSION="${env.LIBRARY_VERSION}-${SAFE_BRANCH}-SNAPSHOT"
           fi
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
