@@ -1,7 +1,7 @@
-name: Create library snapshot
+name: Publish library to GitHub
 on:
   push:
-    branches: [develop]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -53,7 +53,7 @@ jobs:
 
       - name: Build and deploy library
         run: |
-          mvn -B --update-snapshots -DskipTests -Drevision=${{ env.VERSION }} clean deploy -s ./settings.xml -P anonymous
+          mvn -B --update-snapshots -DskipTests -Drevision=${{ env.VERSION }} clean deploy -s ./settings.xml -P github
         env:
           MAVEN_USER: ${{ secrets.MAVEN_USER }}
           MAVEN_PASSKEY: ${{ secrets.MAVEN_PASSKEY }}

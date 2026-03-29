@@ -70,6 +70,14 @@
                 </altSnapshotDeploymentRepository>
             </properties>
         </profile>
+        <profile>
+            <id>github</id>
+            <properties>
+                <altReleaseDeploymentRepository>
+                    https://maven.pkg.github.com/snjdigitalsolutions/springboot-utility-fx
+                </altReleaseDeploymentRepository>
+            </properties>
+        </profile>
     </profiles>
     <activeProfiles>
         <activeProfile>nexus-profile</activeProfile>
