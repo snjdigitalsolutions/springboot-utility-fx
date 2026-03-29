@@ -43,11 +43,11 @@ jobs:
         run: |
           BRANCH=${GITHUB_REF##*/}
           if [ "$BRANCH" = "main" ]; then
-            VERSION=${env.LIBRARY_VERSION}
+            VERSION=$LIBRARY_VERSION
           else
             # Sanitize branch name (slashes, etc.)
             SAFE_BRANCH=$(echo "$BRANCH" | sed 's/[^a-zA-Z0-9]/-/g')
-            VERSION="${env.LINBRARY_VERSION}-${SAFE_BRANCH}-SNAPSHOT"
+            VERSION="${LIBRARY_VERSION}-${SAFE_BRANCH}-SNAPSHOT"
           fi
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
