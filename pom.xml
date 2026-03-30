@@ -29,6 +29,7 @@
     <properties>
         <java.version>25</java.version>
         <revision>1.0.0-SNAPSHOT</revision>
+        <javafx.version>25.0.2</javafx.version>
     </properties>
     <dependencies>
         <dependency>
@@ -39,22 +40,22 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>21.0.3</version>
+            <version>${javafx.version}</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-graphics</artifactId>
-            <version>21.0.3</version>
+            <version>${javafx.version}</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-base</artifactId>
-            <version>21.0.3</version>
+            <version>${javafx.version}</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
-            <version>21.0.3</version>
+            <version>${javafx.version}</version>
         </dependency>
         <dependency>
             <groupId>de.jensd</groupId>
